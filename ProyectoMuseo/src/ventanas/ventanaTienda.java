@@ -62,7 +62,7 @@ public class ventanaTienda {
 		JList list = new JList();
 		list.setBounds(674, 57, 167, 190);
 		frmTienda.getContentPane().add(list);
-		list.setVisible(false);
+		list.setVisible(false); 
 		
 		JButton botonCarrito = new JButton("Carrito");
 		botonCarrito.setBounds(791, 11, 50, 46);
