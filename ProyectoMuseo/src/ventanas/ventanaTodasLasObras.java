@@ -48,7 +48,6 @@ public class ventanaTodasLasObras extends JFrame{
 		JMenuBar barraMenu = new JMenuBar();
 		JMenu menuDatos = new JMenu("Atrás");
 		
-		//menuDatos.add(salir);
 		barraMenu.add(menuDatos);
 		this.setJMenuBar(barraMenu);
 		
