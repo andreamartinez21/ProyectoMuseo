@@ -17,12 +17,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.SwingUtilities;
 
-public class VentanaTodasLasObras extends JFrame{ //no funciona
+public class VentanaTodasLasObras extends JFrame{
 	
-	private int i = 0;
-	private int numBotones = 20;
-	private Map<String,JButton> botones = new HashMap<String,JButton>();
-	private Map<String,JLabel> titulos = new HashMap<String,JLabel>();
+	private int numBotones = 19;
+	private List<JButton> botones = new ArrayList<JButton>();
+	private List<JLabel> titulos = new ArrayList<JLabel>();
 	
 	public VentanaTodasLasObras() {
 		
@@ -38,65 +37,23 @@ public class VentanaTodasLasObras extends JFrame{ //no funciona
 		barraMenu.add(menuDatos);
 		this.setJMenuBar(barraMenu);
 		
-		if(numBotones % 2 == 0) {
-			while(i <= numBotones) {
-				JButton boton1 = new JButton();
-				botones.put("boton" +i, boton1);
-				cp.add(botones.get("boton" +i)); 
-				i++;
-				JButton boton2 = new JButton();
-				botones.put("boton" +i, boton2);
-				cp.add(botones.get("boton" +i));
-				i--;
-				JLabel titulo1 = new JLabel();
-				titulos.put("titulo" +i, titulo1);
-				cp.add(titulos.get("titulo" +i));
-				i++;
-				JLabel titulo2 = new JLabel();
-				titulos.put("titulo" +i, titulo2);
-				cp.add(titulos.get("titulo" +i));
-				i++;
-			}
-		} else {
-			while(i <= numBotones) {
-				if(i == numBotones) {
-					JButton boton1 = new JButton();
-					botones.put("boton" +i, boton1);
-					cp.add(botones.get("boton" +i)); 
-					i++;
-					JButton boton2 = new JButton();
-					botones.put("boton" +i, boton2);
-					cp.add(botones.get("boton" +i));
-					i--;
-					JLabel titulo1 = new JLabel();
-					titulos.put("titulo" +i, titulo1);
-					cp.add(titulos.get("titulo" +i));
-					i++;
-					JLabel titulo2 = new JLabel();
-					titulos.put("titulo" +i, titulo2);
-					cp.add(titulos.get("titulo" +i));
-					i++;
-				} else {
-					JButton boton1 = new JButton();
-					botones.put("boton" +i, boton1);
-					cp.add(botones.get("boton" +i)); 
-					i++;
-					JButton boton2 = new JButton();
-					botones.put("boton" +i, boton2);
-					cp.add(botones.get("boton" +i));
-					botones.get("boton" +i).setVisible(false);
-					i--;
-					JLabel titulo1 = new JLabel();
-					titulos.put("titulo" +i, titulo1);
-					cp.add(titulos.get("titulo" +i));
-					i++;
-					JLabel titulo2 = new JLabel();
-					titulos.put("titulo" +i, titulo2);
-					cp.add(titulos.get("titulo" +i));
-					titulos.get("titulo" +i).setVisible(false);
-					i++;
-				}
-			}
+		for (int i = 0; i < numBotones; i++) {
+			botones.add(new JButton());
+			cp.add(botones.get(i));
+			i++;
+			botones.add(new JButton());
+			cp.add(botones.get(i));
+			i--;
+			titulos.add(new JLabel());
+			cp.add(titulos.get(i));
+			i++;
+			titulos.add(new JLabel());
+			cp.add(titulos.get(i));
+		}
+		
+		if(numBotones % 2 != 0) {
+			botones.get(botones.size()-1).setVisible(false);
+			titulos.get(titulos.size()-1).setVisible(false);
 		}
 		
 		this.pack();
