@@ -41,7 +41,7 @@ public class VentanaLogin extends JFrame {
 	 * Create the application.
 	 */
 	public VentanaLogin() {
-		initialize();
+		initialize(); // comentario de prueba
 	}
 
 	/**
