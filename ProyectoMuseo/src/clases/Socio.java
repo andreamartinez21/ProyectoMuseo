@@ -3,26 +3,29 @@ package clases;
 public class Socio {
 	
 	protected String nombreSocio;
-	protected String apellido;
+	protected String apellidos;
 	protected String dni;
 	protected String email;
+	protected String telefono;
 	protected String numCuenta;
 	protected String contrasenya;
 	
-	public Socio(String nombreSocio, String apellido, String dni, String email, String numCuenta, String contrasenya) {
+	public Socio(String nombreSocio, String apellidos, String dni, String email, String telefono, String numCuenta, String contrasenya) {
 		this.nombreSocio = nombreSocio;
-		this.apellido = apellido;
+		this.apellidos = apellidos;
 		this.dni = dni;
 		this.email = email;
+		this.telefono = telefono;
 		this.numCuenta = numCuenta;
 		this.contrasenya = contrasenya;
 	}
 	
 	public Socio() {
 		this.nombreSocio = "";
-		this.apellido = "";
+		this.apellidos = "";
 		this.dni = "";
 		this.email = "";
+		this.telefono = "";
 		this.numCuenta = "";
 		this.contrasenya = "";
 	}
@@ -35,14 +38,14 @@ public class Socio {
 		this.nombreSocio = nombreSocio;
 	}
 
-	public String getApellido() {
-		return apellido;
+	public String getApellidos() {
+		return apellidos;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
 	}
-	
+
 	public String getDni() {
 		return dni;
 	}
@@ -59,14 +62,22 @@ public class Socio {
 		this.email = email;
 	}
 
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
 	public String getNumCuenta() {
 		return numCuenta;
 	}
-	
-	public void setNumCuenta() {
+
+	public void setNumCuenta(String numCuenta) {
 		this.numCuenta = numCuenta;
 	}
-	
+
 	public String getContrasenya() {
 		return contrasenya;
 	}
@@ -77,7 +88,7 @@ public class Socio {
 
 	@Override
 	public String toString() {
-		return "Socio [dni=" + dni + ", nombreSocio=" + nombreSocio + ", apellido=" + apellido + ", email=" + email
-				+  ", contrasenya=" + contrasenya + "]";
+		return "Socio [nombreSocio=" + nombreSocio + ", apellidos=" + apellidos + ", dni=" + dni + ", email=" + email
+				+ ", telefono=" + telefono + ", numCuenta=" + numCuenta + ", contrasenya=" + contrasenya + "]";
 	}
 }

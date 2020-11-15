@@ -2,15 +2,17 @@ package clases;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Museo {
 	
 	protected String idMuseo;
 	protected String nombreMuseo;
-	protected ArrayList<Articulo> articulos = new ArrayList<Articulo>();
-	protected ArrayList<Socio> socios = new ArrayList<Socio>();
+	protected List<Articulo> articulos = new ArrayList<Articulo>();
+	protected List<Socio> socios = new ArrayList<Socio>();
 	
-	public Museo(String idMuseo, String nombreMuseo, ArrayList<Articulo> articulos, ArrayList<Socio> socios) {
+	public Museo(String idMuseo, String nombreMuseo, List<Articulo> articulos, List<Socio> socios) {
+		super();
 		this.idMuseo = idMuseo;
 		this.nombreMuseo = nombreMuseo;
 		this.articulos = articulos;
@@ -40,19 +42,19 @@ public class Museo {
 		this.nombreMuseo = nombreMuseo;
 	}
 
-	public ArrayList<Articulo> getArticulos() {
+	public List<Articulo> getArticulos() {
 		return articulos;
 	}
 
-	public void setArticulos(ArrayList<Articulo> articulos) {
+	public void setArticulos(List<Articulo> articulos) {
 		this.articulos = articulos;
 	}
 
-	public ArrayList<Socio> getSocios() {
+	public List<Socio> getSocios() {
 		return socios;
 	}
 
-	public void setSocios(ArrayList<Socio> socios) {
+	public void setSocios(List<Socio> socios) {
 		this.socios = socios;
 	}
 
