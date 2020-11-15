@@ -7,6 +7,9 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -57,7 +60,7 @@ public class VentanaLogin extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("LOGIN");
 		frame.getContentPane().add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_1 = new JLabel("Usuario:");
+		JLabel lblNewLabel_1 = new JLabel("e-mail:");
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		textField = new JTextField();
@@ -83,6 +86,16 @@ public class VentanaLogin extends JFrame {
 		
 		JButton btnNewButton = new JButton("Registrarse");
 		frame.getContentPane().add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new VentanaRegistro();
+				
+				System.exit(0);
+			}
+		});
+		
 	}
 
 }

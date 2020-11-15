@@ -6,15 +6,13 @@ public class Socio {
 	protected String nombreSocio;
 	protected String apellido;
 	protected String email;
-	protected String usuario;
 	protected String contrasenya;
 	
-	public Socio(String dni, String nombreSocio, String apellido, String email, String usuario, String contrasenya) {
+	public Socio(String dni, String nombreSocio, String apellido, String email,  String contrasenya) {
 		this.dni = dni;
 		this.nombreSocio = nombreSocio;
 		this.apellido = apellido;
 		this.email = email;
-		this.usuario = usuario;
 		this.contrasenya = contrasenya;
 	}
 	
@@ -23,7 +21,6 @@ public class Socio {
 		this.nombreSocio = "";
 		this.apellido = "";
 		this.email = "";
-		this.usuario = "";
 		this.contrasenya = "";
 	}
 
@@ -59,14 +56,6 @@ public class Socio {
 		this.email = email;
 	}
 
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
 	public String getContrasenya() {
 		return contrasenya;
 	}
@@ -78,6 +67,6 @@ public class Socio {
 	@Override
 	public String toString() {
 		return "Socio [dni=" + dni + ", nombreSocio=" + nombreSocio + ", apellido=" + apellido + ", email=" + email
-				+ ", usuario=" + usuario + ", contrasenya=" + contrasenya + "]";
+				+  ", contrasenya=" + contrasenya + "]";
 	}
 }

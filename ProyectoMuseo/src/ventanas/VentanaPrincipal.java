@@ -1,15 +1,12 @@
 package ventanas;
 
 import java.awt.EventQueue;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import java.awt.GridLayout;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
+import javax.swing.*;
+import java.awt.*;
+
+
 
 public class VentanaPrincipal {
 
@@ -49,31 +46,17 @@ public class VentanaPrincipal {
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel);
-		panel.setLayout(new GridLayout(8, 0, 0, 0));
+		panel.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JLabel lblNewLabel_1 = new JLabel("PR\u00D3XIMOS EVENTOS:");
-		panel.add(lblNewLabel_1);
+		DefaultListModel listModel = new DefaultListModel();
+		listModel.addElement("Jane Doe");
+		listModel.addElement("John Smith");
+		listModel.addElement("Kathy Green");
 		
-		JLabel lblNewLabel_2 = new JLabel("Vida y obra de Basquiat (11 sept - 25 enero)");
-		panel.add(lblNewLabel_2);
+		JList list = new JList(listModel);
+		JScrollPane scrollPane = new JScrollPane(list);
 		
-		JLabel lblNewLabel_3 = new JLabel("Kandinsky obras (29 sept - 22 abril)");
-		panel.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("Charla: arte y feminismo (27 oct, 17:00h)");
-		panel.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("Actividad infantil: el arte y el espacio (31 oct, 18:00h)");
-		panel.add(lblNewLabel_5);
-		
-		JLabel lblNewLabel_6 = new JLabel("Dali y el surrealismo (12 dic - 30 jun)");
-		panel.add(lblNewLabel_6);
-		
-		JLabel lblNewLabel_7 = new JLabel("Taller: Cer\u00E1mica (65+) (11 dic, 14:00h)");
-		panel.add(lblNewLabel_7);
-		
-		JLabel lblNewLabel = new JLabel("Expresionismo alem\u00E1n (9 enero - 30 jul)");
-		panel.add(lblNewLabel);
+		panel.add(scrollPane);
 		
 		JPanel panel_1 = new JPanel();
 		frame.getContentPane().add(panel_1);
@@ -90,6 +73,13 @@ public class VentanaPrincipal {
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Login");
 		mnNewMenu.add(mntmNewMenuItem);
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent ev) {
+		        new VentanaLogin();    
+		    	
+		    	System.exit(0);
+		    }
+		});
 		
 		JMenu mnNewMenu_1 = new JMenu("Tienda");
 		menuBar.add(mnNewMenu_1);
