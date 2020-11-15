@@ -1,15 +1,16 @@
 package clases;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Museo {
 	
 	protected String idMuseo;
 	protected String nombreMuseo;
-	protected Articulo[] articulos;
-	protected Socio[] socios;
+	protected ArrayList<Articulo> articulos = new ArrayList<Articulo>();
+	protected ArrayList<Socio> socios = new ArrayList<Socio>();
 	
-	public Museo(String idMuseo, String nombreMuseo, Articulo[] articulos, Socio[] socios) {
+	public Museo(String idMuseo, String nombreMuseo, ArrayList<Articulo> articulos, ArrayList<Socio> socios) {
 		this.idMuseo = idMuseo;
 		this.nombreMuseo = nombreMuseo;
 		this.articulos = articulos;
@@ -39,25 +40,24 @@ public class Museo {
 		this.nombreMuseo = nombreMuseo;
 	}
 
-	public Articulo[] getArticulos() {
+	public ArrayList<Articulo> getArticulos() {
 		return articulos;
 	}
 
-	public void setArticulos(Articulo[] articulos) {
+	public void setArticulos(ArrayList<Articulo> articulos) {
 		this.articulos = articulos;
 	}
 
-	public Socio[] getSocios() {
+	public ArrayList<Socio> getSocios() {
 		return socios;
 	}
 
-	public void setSocios(Socio[] socios) {
+	public void setSocios(ArrayList<Socio> socios) {
 		this.socios = socios;
 	}
 
 	@Override
 	public String toString() {
-		return "Museo [idMuseo=" + idMuseo + ", nombreMuseo=" + nombreMuseo + ", articulos="
-				+ Arrays.toString(articulos) + ", socios=" + Arrays.toString(socios) + "]";
+		return "Museo" + idMuseo + ", nombre " + nombreMuseo + ", artículos " + articulos + ", socios " + socios + "." ;
 	}
 }

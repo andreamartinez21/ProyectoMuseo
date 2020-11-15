@@ -14,8 +14,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import clases.Socio;
+
 import javax.swing.JButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextArea;
@@ -30,6 +37,7 @@ public class VentanaRegistro {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
+	public Socio socio;
 
 	/**
 	 * Launch the application.
@@ -117,6 +125,28 @@ public class VentanaRegistro {
 		
 		JButton btnNewButton = new JButton("Aceptar");
 		frame.getContentPane().add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String nombreSocio = textField.getText();
+				String apellido = textField_1.getText();
+				String dni = textField_2.getText();
+				String email = textField_3.getText();
+				String numCuenta = textField_4.getText();
+				String contrasenya = textField_5.getText();
+				
+				textField.setText(nombreSocio);
+				textField_1.setText(apellido);
+				textField_2.setText(dni);
+				textField_3.setText(email);
+				textField_4.setText(numCuenta);
+				textField_5.setText(contrasenya);
+				
+				JOptionPane.showMessageDialog(null, "¡El socio ha sido registrado correctamente!");
+
+			}
+		});
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
@@ -126,6 +156,8 @@ public class VentanaRegistro {
 				textField_1.setText("");
 				textField_2.setText("");
 				textField_3.setText("");
+				textField_5.setText("");
+				textField_6.setText("");
 				
 				System.exit(0);
 			}
