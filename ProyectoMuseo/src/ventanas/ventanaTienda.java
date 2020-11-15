@@ -8,23 +8,24 @@ import javax.swing.JFrame;
 import javax.swing.JSpinner;
 import java.awt.BorderLayout;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JScrollBar;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
 
-public class ventanaTienda {
+public class ventanaTienda extends JFrame{
 
-	private JFrame frmTienda;
+	private JPanel panelTienda;
+	//private JPanel panelPrincipal;
+	private JScrollPane scrollPanePrincipal;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					ventanaTienda window = new ventanaTienda();
-					window.frmTienda.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -32,55 +33,51 @@ public class ventanaTienda {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public ventanaTienda() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frmTienda = new JFrame();
-		frmTienda.setTitle("Tienda");
-		frmTienda.setBounds(100, 100, 882, 456);
-		frmTienda.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmTienda.getContentPane().setLayout(null);
 		
-		JScrollBar scrollBar_1 = new JScrollBar();
-		scrollBar_1.setEnabled(false);
-		scrollBar_1.setBounds(818, 57, 23, 190);
-		frmTienda.getContentPane().add(scrollBar_1);
-		scrollBar_1.setVisible(false);
+		setTitle("Tienda");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(851, 0, 17, 419);
-		frmTienda.getContentPane().add(scrollBar);
+		panelTienda = new JPanel();
+		panelTienda.setBounds(100, 100, 882, 456);
 		
-		JList list = new JList();
-		list.setBounds(674, 57, 167, 190);
-		frmTienda.getContentPane().add(list);
-		list.setVisible(false); 
+		//panelPrincipal = new JPanel();
+		
+		
+		scrollPanePrincipal = new JScrollPane();
+		scrollPanePrincipal.setBounds(0, 0, 1086, 700);
+		scrollPanePrincipal.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		panelTienda.setLayout(null);
 		
 		JButton botonCarrito = new JButton("Carrito");
-		botonCarrito.setBounds(791, 11, 50, 46);
-		frmTienda.getContentPane().add(botonCarrito);
+		botonCarrito.setBounds(832, 0, 50, 46);
+		panelTienda.add(botonCarrito);
+		
+		JList list = new JList();
+		
+		JScrollPane scrollPane = new JScrollPane(list);
+		scrollPane.setBounds(674, 61, 167, 190);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setVisible(false);
+		panelTienda.add(scrollPane);
+		
+		scrollPanePrincipal.add(panelTienda);
+		//panelPrincipal.add(scrollPanePrincipal);
+		panelTienda.setVisible(true);
+		//panelPrincipal.setVisible(true);
+		scrollPanePrincipal.setVisible(true);
+		this.setVisible(true);
+		getContentPane().setLayout(null);
+		getContentPane().add(scrollPanePrincipal);
+		this.setSize(1100, 900);
 		
 		botonCarrito.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(list.isVisible() == false) {
-					list.setVisible(true);
+				if(scrollPane.isVisible() == false) {
+					scrollPane.setVisible(true);
 				} else
-					list.setVisible(false);
-					
-				if(list.isVisible() == false) {
-					scrollBar_1.setVisible(false);
-				} else
-					scrollBar_1.setVisible(true);
+					scrollPane.setVisible(false);
 			}
 		});
 	}
