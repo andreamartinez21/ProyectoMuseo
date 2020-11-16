@@ -14,7 +14,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 
-public class ventanaTienda extends JFrame{
+public class VentanaTienda extends JFrame{
 
 	private JPanel panelTienda;
 	//private JPanel panelPrincipal;
@@ -24,7 +24,7 @@ public class ventanaTienda extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ventanaTienda window = new ventanaTienda();
+					VentanaTienda window = new VentanaTienda();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,7 +33,7 @@ public class ventanaTienda extends JFrame{
 		});
 	}
 
-	public ventanaTienda() {
+	public VentanaTienda() {
 		
 		setTitle("Tienda");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
