@@ -22,4 +22,10 @@ public class Coordenadas {
 		this.x = 0;
 		this.y = 0;
 	}
+	
+	@Override
+	public boolean equals(Object objeto) {
+		Coordenadas c = (Coordenadas) objeto;
+		return this.x == c.x && this.y == c.y;
+	}
 }
