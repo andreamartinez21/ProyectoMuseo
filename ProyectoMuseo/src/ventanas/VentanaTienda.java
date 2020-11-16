@@ -53,7 +53,7 @@ public class VentanaTienda extends JFrame{
 		botonCarrito.setBounds(832, 0, 50, 46);
 		panelTienda.add(botonCarrito);
 		
-		JList list = new JList();
+		JList list = new JList(); 
 		
 		JScrollPane scrollPane = new JScrollPane(list);
 		scrollPane.setBounds(674, 61, 167, 190);
