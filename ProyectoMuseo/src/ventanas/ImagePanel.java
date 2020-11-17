@@ -9,11 +9,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class ImagePanel extends JPanel {
-	 private BufferedImage image;
+	 public BufferedImage mapaMuseo;
 
 	    public ImagePanel() {
 	       try {                
-	          image = ImageIO.read(new File("mapaMuseo.jpg"));
+	          mapaMuseo = ImageIO.read(new File("images/fondos/mapaMuseo.jpg"));
 	       } catch (IOException ex) {
 	       }
 	    }
@@ -21,7 +21,7 @@ public class ImagePanel extends JPanel {
 	    @Override
 	    protected void paintComponent(Graphics g) {
 	        super.paintComponent(g);
-	        g.drawImage(image, 0, 0, this); // see javadoc for more info on the parameters            
+	        g.drawImage(mapaMuseo, 0, 0, this); // see javadoc for more info on the parameters            
 	    }
 
 	}
