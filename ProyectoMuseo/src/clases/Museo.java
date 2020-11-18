@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Museo {
 	
+	// Ask
+	
 	protected String idMuseo;
 	protected String nombreMuseo;
 	protected List<Articulo> articulos = new ArrayList<Articulo>();
