@@ -23,7 +23,7 @@ public class BD {
 		}
 		
 		try {
-			conn = DriverManager.getConnection("jdbc:sqlite:coordenadas.db");
+			conn = DriverManager.getConnection("jdbc:sqlite:baseDatosTotal.db");
 
 			
 		} catch (SQLException e) {
