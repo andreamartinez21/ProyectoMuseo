@@ -1,7 +1,6 @@
 package ventanas;
 
 import java.awt.BorderLayout;
-
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -9,13 +8,14 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import ventanas.ImagePanel;
 import BD.BD;
 import clases.Coordenadas;
 
@@ -42,7 +42,7 @@ public class VentanaMapa extends JFrame {
 		
 		// Components
 		
-		ImagePanel panelImagen = new ImagePanel();
+		ImagePanel panelImagen = new ImagePanel("images/fondos/mapaMuseo.jpg");
 		Insets insets = panelImagen.getInsets();
 		Dimension size = arrayBotonesObras[0].getPreferredSize();
 		panelAbajo = new JPanel();

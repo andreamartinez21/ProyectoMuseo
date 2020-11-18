@@ -11,9 +11,9 @@ import javax.swing.JPanel;
 public class ImagePanel extends JPanel {
 	 public BufferedImage mapaMuseo;
 
-	    public ImagePanel() {
+	    public ImagePanel(String img) {
 	       try {                
-	          mapaMuseo = ImageIO.read(new File("images/fondos/mapaMuseo.jpg"));
+	          mapaMuseo = ImageIO.read(new File(img));
 	       } catch (IOException ex) {
 	       }
 	    }
