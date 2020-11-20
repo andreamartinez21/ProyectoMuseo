@@ -5,7 +5,7 @@ public class Tienda extends Articulo implements Venta {
 	protected float precio;
 	protected boolean descuento;
 
-	public Tienda(String idArticulo, String nombreArticulo, String descripcion, float precio, boolean descuento) {
+	public Tienda(int idArticulo, String nombreArticulo, String descripcion, float precio, boolean descuento) {
 		super(idArticulo, nombreArticulo, descripcion);
 		this.precio = precio;
 		this.descuento = descuento;

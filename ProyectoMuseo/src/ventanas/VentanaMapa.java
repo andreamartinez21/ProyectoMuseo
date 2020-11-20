@@ -8,8 +8,6 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,6 +16,7 @@ import javax.swing.SwingUtilities;
 
 import BD.BD;
 import clases.Coordenadas;
+import clases.Obra;
 
 //import clases.Coordenadas;
 
@@ -77,6 +76,8 @@ public class VentanaMapa extends JFrame {
 		for (int i = 0; i < coordenadas.length; i++) {
 			arrayBotonesObras[i].setBounds(coordenadas[i].x + insets.left, coordenadas[i].y + insets.top, size.width, size.height);
 		}
+		
+		Obra[] obras = BDTotal.obras(); // Sin uso todavía
 		
 		cp.add(barraBuscadora, BorderLayout.PAGE_START);
 		cp.add(panelImagen, BorderLayout.CENTER);

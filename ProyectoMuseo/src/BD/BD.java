@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import clases.Coordenadas;
+import clases.Obra;
 
 public class BD {
 	
@@ -56,6 +57,33 @@ public class BD {
 			e.printStackTrace();
 		}				
 		return coordenadas;	// El método me devuelve el array de coords
+	}
+	
+	public Obra[] obras() {
+		
+		Obra[] obras = new Obra[20];
+		Statement stmt;
+		ResultSet rs;
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM obras");
+			
+			int i = 0;
+			
+			while(rs.next()) {
+				
+				obras[i] = new Obra(rs.getInt("id_articulo"), rs.getString("nom_articulo"), rs.getString("descripcion"),
+					rs.getString("zona"), rs.getString("artista"), rs.getString("fecha"));
+			
+				i++;
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return obras;
 	}
 }
 

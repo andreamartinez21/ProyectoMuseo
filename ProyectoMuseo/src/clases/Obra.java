@@ -6,7 +6,7 @@ public class Obra extends Articulo {
 	protected String artista;
 	protected String fecha;
 	
-	public Obra(String idArticulo, String nombreArticulo, String descripcion, String zona, String artista,
+	public Obra(int idArticulo, String nombreArticulo, String descripcion, String zona, String artista,
 			String fecha) {
 		super(idArticulo, nombreArticulo, descripcion);
 		this.zona = zona;

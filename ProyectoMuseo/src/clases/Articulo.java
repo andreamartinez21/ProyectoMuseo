@@ -2,27 +2,27 @@ package clases;
 
 public abstract class Articulo {
 	
-	protected String idArticulo;
+	protected int idArticulo;
 	protected String nombreArticulo;
 	protected String descripcion;
 	
-	public Articulo(String idArticulo, String nombreArticulo, String descripcion) {
+	public Articulo(int idArticulo, String nombreArticulo, String descripcion) {
 		this.idArticulo = idArticulo;
 		this.nombreArticulo = nombreArticulo;
 		this.descripcion = descripcion;
 	}
 	
 	public Articulo() {
-		this.idArticulo = "";
+		this.idArticulo = 0;
 		this.nombreArticulo = "";
 		this.descripcion = "";
 	}
 
-	public String getIdArticulo() {
+	public int getIdArticulo() {
 		return idArticulo;
 	}
 
-	public void setIdArticulo(String idArticulo) {
+	public void setIdArticulo(int idArticulo) {
 		this.idArticulo = idArticulo;
 	}
 
