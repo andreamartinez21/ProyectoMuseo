@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import clases.Coordenadas;
 import clases.Obra;
@@ -14,6 +16,7 @@ import clases.Obra;
 public class BD {
 	
 	Connection conn; // Conexión BD (link)
+	private static Logger logger = null;
 	
 	public BD() {
 		try {
@@ -52,9 +55,14 @@ public class BD {
 				coordenadas[i] = new Coordenadas(rs.getInt("x"), rs.getInt("y"));
 				i++;
 			}	
+			//LLAMADA A LOGGER
+			log(Level.INFO, "Las coordenadas se han seleccionado correctamente.", null); //saca información
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
+			//logger --> por si falla
+			log(Level.SEVERE, "Ha habido un error.", e);
 		}				
 		return coordenadas;	// El método me devuelve el array de coords
 	}
@@ -78,12 +86,28 @@ public class BD {
 			
 				i++;
 			}
+			//LLAMADA A LOGGER
+			log(Level.INFO, "Las obras se han seleccionado correctamente.", null); //saca información
+			
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
+			
+			//logger --> por si falla
+			log(Level.SEVERE, "Ha habido un error.", e);
 		}
 		
 		return obras;
+	}
+	//LOGGER
+	public static void log(Level level, String msg, Throwable exception) {
+		
+		if(logger == null) {
+			logger = Logger.getLogger(BD.class.getName());
+			logger.setLevel(Level.ALL);
+		}
+		if(exception == null) logger.log(level, msg);
+		else logger.log(level,msg,exception);
 	}
 }
 
