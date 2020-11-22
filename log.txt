@@ -1,0 +1,16 @@
+nov. 21, 2020 12:11:19 P. M. clases.Main main
+WARNING: warning msg
+nov. 21, 2020 12:11:19 P. M. clases.Main main
+SEVERE: Severe msg
+nov. 21, 2020 12:13:39 P. M. clases.Main main
+WARNING: warning msg
+nov. 21, 2020 12:13:39 P. M. clases.Main main
+SEVERE: Severe msg
+nov. 21, 2020 1:07:46 P. M. clases.Main main
+WARNING: warning msg
+nov. 21, 2020 1:07:47 P. M. clases.Main main
+SEVERE: Severe msg
+nov. 21, 2020 1:07:53 P. M. clases.Main main
+WARNING: warning msg
+nov. 21, 2020 1:07:53 P. M. clases.Main main
+SEVERE: Severe msg
