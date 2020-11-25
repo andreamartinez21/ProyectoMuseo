@@ -6,6 +6,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -86,6 +88,18 @@ public class VentanaMapa extends JFrame {
 		for(int i = 0; i < 20; i++) {
 			panelImagen.add(arrayBotonesObras[i]);
 		}
+		
+		// Listeners
+		
+		arrayBotonesObras[0].addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				setVisible(false);
+				VentanaTodasLasObras v1 = new VentanaTodasLasObras();
+			}
+		});
 		
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setTitle("Museo - Mapa");

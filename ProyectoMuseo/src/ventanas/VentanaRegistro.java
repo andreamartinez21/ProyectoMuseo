@@ -118,15 +118,15 @@ public class VentanaRegistro extends JFrame{
 				
 				Socio socio = new Socio(nombreSocio, apellido, dni, email, telefono, numCuenta, contrasenya);
 				
-				if (BD.getInstance().comprobarRegistro(socio)==null) { //para comprobar si los datos no están vacíos
-					
-					//insertamos el nuevo socio en la bd
-					BD.getInstance().insertarSocio(socio);
-					JOptionPane.showMessageDialog(null, "¡El socio ha sido registrado correctamente!");
-				} else {
-					JOptionPane.showMessageDialog(null, "¡Este socio ya existe!");				
-					
-				}
+//				if (BD.getInstance().comprobarRegistro(socio)==null) { //para comprobar si los datos no están vacíos
+//					
+//					//insertamos el nuevo socio en la bd
+//					BD.getInstance().insertarSocio(socio);
+//					JOptionPane.showMessageDialog(null, "¡El socio ha sido registrado correctamente!");
+//				} else {
+//					JOptionPane.showMessageDialog(null, "¡Este socio ya existe!");				
+//					
+//				}
 				
 				
 				

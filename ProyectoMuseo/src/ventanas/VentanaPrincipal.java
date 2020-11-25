@@ -62,8 +62,9 @@ public class VentanaPrincipal {
 		frame.getContentPane().add(panel_1);
 		//IMAGEN DE PRUEBA!!!!!!!!!!
 		JLabel lblNewLabel_8 = new JLabel("");
-		lblNewLabel_8.setIcon(new ImageIcon("C:\\Users\\Asus\\eclipse-workspace\\proyecto\\src\\imagenes\\Museo-AGS-1000x570.jpg"));
+		lblNewLabel_8.setIcon(new ImageIcon("fondos/images/nombre"));
 		panel_1.add(lblNewLabel_8);
+		ImagePanel imgBg = new ImagePanel("");
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);

@@ -65,7 +65,7 @@ public class VentanaLogin extends JFrame {
 				//cada vez que usemos algo de la clase BD TENEMOS QUE PIRMERO PONER BD.GETINSTANE() 
 				//(pq es lo que hace que creemos la base de datos UNA ÚNICA VEZ!!!!!!!!)
 				//base de datos --> llamar 1 vez (instancia) --> metodo de comprobar el login para entrar :D
-				BD.getInstance().comprobarLogin(textField.getText(), textField_1.getText());
+				//BD.getInstance().comprobarLogin(textField.getText(), textField_1.getText());
 				
 			}
 		});
