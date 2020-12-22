@@ -148,26 +148,12 @@ public class VentanaMapa extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 	
-//	public void actionPerformed (ActionEvent e) {
-//		setVisible(false);
-//		
-//		BotonObra botonObraSrc = (BotonObra) e.getSource(); // me devuelve en que boton he hecho click
-//																	// obra del boton en el que he clicado
-//		VentanaObra ventObra = new VentanaObra(botonObraSrc.getObra());		
-//	}
-	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					new VentanaMapa();
-					
-					BD BDTotal = new BD();
-					List<Obra> listaObras = listaObras = new ArrayList<Obra>(BDTotal.obras());
-					
-					System.out.println(listaObras);
-					
 					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

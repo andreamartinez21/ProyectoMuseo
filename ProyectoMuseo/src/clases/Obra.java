@@ -8,8 +8,6 @@ public class Obra extends Articulo {
 	public String imagen;
 	public int x;
 	public int y;
-	//image
-	//x,y
 	
 	public Obra(int idArticulo, String nombreArticulo, String descripcion, String zona, String artista,
 			String fecha, String imagen, int x, int y) {
