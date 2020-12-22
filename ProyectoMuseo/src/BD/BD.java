@@ -7,8 +7,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
-import clases.Coordenadas;
 import clases.Obra;
 
 public class BD {
@@ -33,35 +34,10 @@ public class BD {
 			System.out.println("Error en la BD");
 		}
 	}
-
-	public Coordenadas[] coords() { 	// Hago un método que me defvuelve un array de coords para pasarselo a VM lleno, si no, está null
-
-		Coordenadas[] coordenadas = new Coordenadas[20];
-		Statement stmt;		// Preparar una query que le pasaré a la BD
-		ResultSet rs;		// Resultado que me devuelve la BD
-
-		try {										// Envolver siempre en try/catch
-			stmt = conn.createStatement();	
-			rs = stmt.executeQuery("SELECT * FROM tablacoordenadas");	
-
-			int i = 0;
-
-			while(rs.next()) {												// El while es como un for
-				// If array[i] == null, initialize the variable	
-
-				coordenadas[i] = new Coordenadas(rs.getInt("x"), rs.getInt("y"));
-				i++;
-			}	
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}				
-		return coordenadas;	// El método me devuelve el array de coords
-	}
 	
-	public Obra[] obras() {
+	public List<Obra> obras() {
 
-		Obra[] obras = new Obra[20];
+		List<Obra> obras = new ArrayList<Obra>();
 		Statement stmt;
 		ResultSet rs;
 
@@ -69,20 +45,19 @@ public class BD {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM obras");
 
-			int i = 0;
-
 			while(rs.next()) {
 
-				obras[i] = new Obra(rs.getInt("id_articulo"), rs.getString("nom_articulo"), rs.getString("descripcion"),
-					rs.getString("zona"), rs.getString("artista"), rs.getString("fecha"));
-
-				i++;
+				obras.add(new Obra(rs.getInt("id_articulo"), rs.getString("nom_articulo"), rs.getString("descripcion"),
+						rs.getString("zona"), rs.getString("artista"), rs.getString("fecha"), rs.getString("imagen"), rs.getInt("x"),
+						rs.getInt("y")));
 			}
+			
+			
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-
+		
 		return obras;
 	}
 }

@@ -8,8 +8,12 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,35 +21,51 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import BD.BD;
-import clases.Coordenadas;
 import clases.Obra;
 
 //import clases.Coordenadas;
 
-public class VentanaMapa extends JFrame {
+public class VentanaMapa extends JFrame implements ActionListener {
 	
 	JTextField barraBuscadora;
 	JPanel panelAbajo;
 	JButton verObrasTotales;
 	JButton buscarObra;
+	private static final Dimension TAMANYO_BOTON = new Dimension(20, 20);
 	
-	JButton[] arrayBotonesObras = new JButton[20];	
+	List<BotonObra> botones = new ArrayList<BotonObra>();
+	List<Obra> listaObras;
 	
 	// setBounds : button size
 	
 	public VentanaMapa() throws IOException {
 		
-		for(int i = 0; i < arrayBotonesObras.length; i++) {
-			arrayBotonesObras[i] = new JButton();
-			arrayBotonesObras[i].setPreferredSize(new Dimension(20, 20));
-			arrayBotonesObras[i].setBackground(Color.GREEN);
+		BD BDTotal = new BD();
+		listaObras = new ArrayList<Obra>(BDTotal.obras());		// Cargo todos los datos de las obras
+		
+//		for (Obra obra : listaObras) {
+//			BotonObra boton = new BotonObra(obra);
+//			boton.setPreferredSize(TAMANYO_BOTON);
+//			boton.setBackground(Color.GREEN);
+//		}
+		
+//		for (int i = 0; i < listaObras.size(); i++) {
+//			botones.add(new BotonObra(listaObras.get(i)));			// rellenar lista botones
+//		}
+		
+		
+		for(int i = 0; i < listaObras.size(); i++) {
+			BotonObra boton = new BotonObra(listaObras.get(i));
+			boton.setPreferredSize(TAMANYO_BOTON);
+			boton.setBackground(Color.GREEN);
+			
+			botones.add(boton);
 		}
 		
 		// Components
 		
 		ImagePanel panelImagen = new ImagePanel("images/fondos/mapaMuseo.jpg");
 		Insets insets = panelImagen.getInsets();
-		Dimension size = arrayBotonesObras[0].getPreferredSize();
 		panelAbajo = new JPanel();
 		
 		barraBuscadora = new JTextField("Busca el nombre de la obra");
@@ -70,36 +90,56 @@ public class VentanaMapa extends JFrame {
 			// obra6 to obra10 = Greek Zone
 			// obra11 to obra15 = E. Zone
 			// obra16 to obra20 = Latin Zone
-
-		BD BDTotal = new BD();	// Base de datos entera
+			// BD().coords(); entro al public BD y luego al método coords 
 		
-		Coordenadas[] coordenadas = BDTotal.coords();	// BD().coords(); entro al public BD y luego al método coords 
 		
-		for (int i = 0; i < coordenadas.length; i++) {
-			arrayBotonesObras[i].setBounds(coordenadas[i].x + insets.left, coordenadas[i].y + insets.top, size.width, size.height);
+		for (int i = 0; i < listaObras.size(); i++) {
+			botones.get(i).setBounds(botones.get(i).getObra().getX() + insets.left, botones.get(i).getObra().getY() + insets.top,
+					TAMANYO_BOTON.width, TAMANYO_BOTON.height);
 		}
-		
-		Obra[] obras = BDTotal.obras(); // Sin uso todavía
+
+		for(int i = 0; i < botones.size(); i++) {
+			panelImagen.add(botones.get(i));
+		}
 		
 		cp.add(barraBuscadora, BorderLayout.PAGE_START);
 		cp.add(panelImagen, BorderLayout.CENTER);
 		cp.add(panelAbajo, BorderLayout.PAGE_END);
-				
-		for(int i = 0; i < 20; i++) {
-			panelImagen.add(arrayBotonesObras[i]);
-		}
 		
 		// Listeners
 		
-		arrayBotonesObras[0].addActionListener(new ActionListener() {
+		verObrasTotales.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				setVisible(false);
-				VentanaTodasLasObras v1 = new VentanaTodasLasObras();
+				VentanaTodasLasObras todasObras = new VentanaTodasLasObras();
 			}
 		});
+		
+		buscarObra.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				//if(barraBuscadora.getText().equals(Articulo.nombreArticulo)) {
+				//	
+				//}
+			}
+		});
+		
+		for(BotonObra b : botones) {
+			b.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					setVisible(false);
+					VentanaObra vo = new VentanaObra(b.getObra());
+				}
+			});
+		}
 		
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setTitle("Museo - Mapa");
@@ -108,17 +148,38 @@ public class VentanaMapa extends JFrame {
 		setVisible(true);
 	}
 	
+//	public void actionPerformed (ActionEvent e) {
+//		setVisible(false);
+//		
+//		BotonObra botonObraSrc = (BotonObra) e.getSource(); // me devuelve en que boton he hecho click
+//																	// obra del boton en el que he clicado
+//		VentanaObra ventObra = new VentanaObra(botonObraSrc.getObra());		
+//	}
+	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					new VentanaMapa();
+					
+					BD BDTotal = new BD();
+					List<Obra> listaObras = listaObras = new ArrayList<Obra>(BDTotal.obras());
+					
+					System.out.println(listaObras);
+					
+					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+	// TODO Auto-generated method stub
+	
 	}
 }
