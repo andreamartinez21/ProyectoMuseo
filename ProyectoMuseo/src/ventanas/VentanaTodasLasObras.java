@@ -66,8 +66,8 @@ public class VentanaTodasLasObras extends JFrame{
 			@Override
 			public void menuSelected(MenuEvent arg0) {
 				// TODO Auto-generated method stub
-				setVisible(false);
 				try {
+					setVisible(false);
 					VentanaMapa vm = new VentanaMapa();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

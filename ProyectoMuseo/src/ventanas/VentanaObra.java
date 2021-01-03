@@ -3,8 +3,6 @@ package ventanas;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +14,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
@@ -32,7 +31,7 @@ public class VentanaObra extends JFrame{
 	JPanel panel2;
 	ImagePanel imgObra;
 	JTable tablaDatosObra;
-	JLabel descripcionExt;
+	JTextArea descripcionExt;
 	JMenuBar barraMenu;
 	JMenu menu;
 	Insets insets;
@@ -52,12 +51,14 @@ public class VentanaObra extends JFrame{
 		menu = new JMenu("Atrás");
 		barraMenu.add(menu);
 		listaObras = new ArrayList<Obra>(bd.obras());
-		descripcionExt = new JLabel();
+		descripcionExt = new JTextArea();
 		
 		for(int i = 0; i < listaObras.size(); i++) {
 			if(obra.getIdArticulo() == listaObras.get(i).getIdArticulo()) {
 				imgObra = new ImagePanel(listaObras.get(i).getImagen());
-				descripcionExt.setText("Descripción: " + listaObras.get(i).getDescripcion());
+				descripcionExt.setText("\nDescripción: " + listaObras.get(i).getDescripcion());
+				descripcionExt.setLineWrap(true);
+				descripcionExt.setEditable(false);
 				
 				titulo = listaObras.get(i).getNombreArticulo();
 				zona = listaObras.get(i).getZona();
