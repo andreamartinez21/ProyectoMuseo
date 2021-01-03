@@ -43,17 +43,6 @@ public class VentanaMapa extends JFrame implements ActionListener {
 		BD BDTotal = new BD();
 		listaObras = new ArrayList<Obra>(BDTotal.obras());		// Cargo todos los datos de las obras
 		
-//		for (Obra obra : listaObras) {
-//			BotonObra boton = new BotonObra(obra);
-//			boton.setPreferredSize(TAMANYO_BOTON);
-//			boton.setBackground(Color.GREEN);
-//		}
-		
-//		for (int i = 0; i < listaObras.size(); i++) {
-//			botones.add(new BotonObra(listaObras.get(i)));			// rellenar lista botones
-//		}
-		
-		
 		for(int i = 0; i < listaObras.size(); i++) {
 			BotonObra boton = new BotonObra(listaObras.get(i));
 			boton.setPreferredSize(TAMANYO_BOTON);
@@ -91,7 +80,6 @@ public class VentanaMapa extends JFrame implements ActionListener {
 			// obra11 to obra15 = E. Zone
 			// obra16 to obra20 = Latin Zone
 			// BD().coords(); entro al public BD y luego al método coords 
-		
 		
 		for (int i = 0; i < listaObras.size(); i++) {
 			botones.get(i).setBounds(botones.get(i).getObra().getX() + insets.left, botones.get(i).getObra().getY() + insets.top,

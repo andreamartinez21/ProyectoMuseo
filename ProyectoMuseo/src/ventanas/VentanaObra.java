@@ -1,5 +1,6 @@
 package ventanas;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -10,6 +11,8 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -25,46 +28,65 @@ import clases.Obra;
 public class VentanaObra extends JFrame{
 	
 	JScrollPane scroll;
-	JPanel panel;
+	JPanel panel1;
+	JPanel panel2;
 	ImagePanel imgObra;
 	JTable tablaDatosObra;
 	JLabel descripcionExt;
+	JMenuBar barraMenu;
+	JMenu menu;
 	Insets insets;
 	Dimension sizeImg;
 	Dimension sizeTabla;
 	Dimension sizeLabel;
-	Container cp;
 	List<Obra> listaObras;
+	String titulo;
+	String zona;
+	String artista;
+	String fecha;
 	
 	public VentanaObra(Obra obra) {
 		
 		BD bd = new BD();
+		barraMenu = new JMenuBar();
+		menu = new JMenu("Atrás");
+		barraMenu.add(menu);
 		listaObras = new ArrayList<Obra>(bd.obras());
 		descripcionExt = new JLabel();
 		
 		for(int i = 0; i < listaObras.size(); i++) {
 			if(obra.getIdArticulo() == listaObras.get(i).getIdArticulo()) {
 				imgObra = new ImagePanel(listaObras.get(i).getImagen());
-				descripcionExt.setText(listaObras.get(i).getDescripcion());
+				descripcionExt.setText("Descripción: " + listaObras.get(i).getDescripcion());
+				
+				titulo = listaObras.get(i).getNombreArticulo();
+				zona = listaObras.get(i).getZona();
+				artista = listaObras.get(i).getArtista();
+				fecha = listaObras.get(i).getFecha();
 				break;
 			}
 		}
 		
-		
-		cp = this.getContentPane();
 		this.setPreferredSize(new Dimension(900, 600));
 		
-		panel = new JPanel();
-		panel.setPreferredSize(new Dimension(800, 900));
-		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		panel1 = new JPanel();
+		panel1.setPreferredSize(new Dimension(800, 450));
+		panel2 = new JPanel();
+		panel2.setPreferredSize(new Dimension(800, 200));
+		panel1.setLayout(new BorderLayout());
+		panel2.setLayout(new BorderLayout());
 		
-		insets = panel.getInsets();
+		insets = panel1.getInsets();
 		sizeImg = new Dimension(470, 320);	
 		
 		// Datos de prueba, se hará un método en BD() para leer estos datos de la BD.
 		
-		String datos[][] = { {"ARTISTA", "AÑO", "ZONA"}, {"d", "e", "f"}, {"g", "h", "i"}};
-		String columnas[] = {"c1", "c2", "c3"};
+		String datos[][] = { {"Título:", titulo}, 
+							 {"Zona:", zona}, 
+							 {"Artista", artista},
+							 {"Fecha", fecha} };
+		
+		String columnas[] = {"c1", "c2"};		
 		
 		TableModel modelo = new DefaultTableModel(datos, columnas) {
 			private static final long serialVersionUID = 1L;
@@ -77,41 +99,18 @@ public class VentanaObra extends JFrame{
 		tablaDatosObra = new JTable(modelo);
 		tablaDatosObra.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
-		for (int column = 0; column < tablaDatosObra.getColumnCount(); column++) {
-			
-		    TableColumn tableColumn = tablaDatosObra.getColumnModel().getColumn(column);
-		    int preferredWidth = tableColumn.getMinWidth();
-		    int maxWidth = tableColumn.getMaxWidth();
-		 
-		    for (int row = 0; row < tablaDatosObra.getRowCount(); row++) {
-		    	
-		        TableCellRenderer cellRenderer = tablaDatosObra.getCellRenderer(row, column);
-		        Component c = tablaDatosObra.prepareRenderer(cellRenderer, row, column);
-		        int width = c.getPreferredSize().width + tablaDatosObra.getIntercellSpacing().width;
-		        preferredWidth = Math.max(preferredWidth, width);
-		 
-		        if (preferredWidth >= maxWidth) {
-		        	
-		            preferredWidth = maxWidth;
-		            break;
-		        }
-		    }
-		 
-		    tableColumn.setPreferredWidth( preferredWidth );
-		}
-		
 		scroll = new JScrollPane();
 
-		panel.add(imgObra);
-		panel.add(tablaDatosObra);
-		panel.add(descripcionExt);
-		
-		cp.add(scroll);
-		scroll.setViewportView(panel);
+		panel1.add(barraMenu, BorderLayout.PAGE_START);
+		panel1.add(imgObra, BorderLayout.CENTER);
+		panel1.add(tablaDatosObra, BorderLayout.PAGE_END);
+		panel2.add(descripcionExt);
+
+		add(panel1, BorderLayout.PAGE_START);
+		add(panel2, BorderLayout.CENTER);
 		
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setTitle("Museo - Mapa");
-//		setSize(500, 800);
 		pack();
 		setResizable(false);
 		setVisible(true);
