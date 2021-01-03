@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,13 +93,24 @@ public class VentanaTodasLasObras extends JFrame{
 			panel2 = new JPanel();
 			panel2.setLayout(new BorderLayout());
 			
-			JButton b = new JButton(new ImageIcon(listaObras.get(i).getImagen()));
+			Obra o = listaObras.get(i);
+			
+			JButton b = new JButton(new ImageIcon(o.getImagen()));
 			
 			b.setSize(TAMANYO_BOTON);
 			panel2.add(b, BorderLayout.CENTER);
 			panel2.add(new JLabel(listaObras.get(i).getNombreArticulo()), BorderLayout.PAGE_END);
 			panel1.add(panel2);	
-		}
+			
+			b.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					VentanaObra vo = new VentanaObra(o);
+				}
+			});
+		}	
 		
 		this.setVisible(true);
 		this.setResizable(true);

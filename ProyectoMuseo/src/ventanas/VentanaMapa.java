@@ -44,9 +44,12 @@ public class VentanaMapa extends JFrame implements ActionListener {
 		listaObras = new ArrayList<Obra>(BDTotal.obras());		// Cargo todos los datos de las obras
 		
 		for(int i = 0; i < listaObras.size(); i++) {
-			BotonObra boton = new BotonObra(listaObras.get(i));
+			Obra o = listaObras.get(i);
+			
+			BotonObra boton = new BotonObra(o);
 			boton.setPreferredSize(TAMANYO_BOTON);
 			boton.setBackground(Color.GREEN);
+			boton.setVisible(false);
 			
 			botones.add(boton);
 		}
@@ -113,9 +116,12 @@ public class VentanaMapa extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				//if(barraBuscadora.getText().equals(Articulo.nombreArticulo)) {
-				//	
-				//}
+				
+				for (int i = 0; i < listaObras.size(); i++) {
+					if(barraBuscadora.getText().equals(listaObras.get(i).getNombreArticulo())) {
+						botones.get(i).setVisible(true);
+					}
+				}
 			}
 		});
 		
