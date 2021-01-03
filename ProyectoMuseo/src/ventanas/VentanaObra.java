@@ -1,14 +1,14 @@
 package ventanas;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -17,9 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
 import BD.BD;
@@ -99,7 +99,33 @@ public class VentanaObra extends JFrame{
 		tablaDatosObra = new JTable(modelo);
 		tablaDatosObra.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
-		scroll = new JScrollPane();
+		menu.addMenuListener(new MenuListener() {
+			
+			@Override
+			public void menuSelected(MenuEvent arg0) {
+				// TODO Auto-generated method stub
+				setVisible(false);
+				try {
+					VentanaMapa vm = new VentanaMapa();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			@Override
+			public void menuDeselected(MenuEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void menuCanceled(MenuEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 
 		panel1.add(barraMenu, BorderLayout.PAGE_START);
 		panel1.add(imgObra, BorderLayout.CENTER);

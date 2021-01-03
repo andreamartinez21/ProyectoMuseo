@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
 import BD.BD;
 import clases.Obra;
@@ -55,6 +58,33 @@ public class VentanaTodasLasObras extends JFrame{
 		
 		barraMenu.add(menuDatos);
 		this.setJMenuBar(barraMenu);
+		
+		menuDatos.addMenuListener(new MenuListener() {
+			
+			@Override
+			public void menuSelected(MenuEvent arg0) {
+				// TODO Auto-generated method stub
+				setVisible(false);
+				try {
+					VentanaMapa vm = new VentanaMapa();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			@Override
+			public void menuDeselected(MenuEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void menuCanceled(MenuEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		for (int i = 0; i < listaObras.size(); i++) {
 			

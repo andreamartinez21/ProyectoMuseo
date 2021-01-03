@@ -8,14 +8,13 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -31,6 +30,7 @@ public class VentanaMapa extends JFrame implements ActionListener {
 	JPanel panelAbajo;
 	JButton verObrasTotales;
 	JButton buscarObra;
+	JButton descargarObras;
 	private static final Dimension TAMANYO_BOTON = new Dimension(20, 20);
 	
 	List<BotonObra> botones = new ArrayList<BotonObra>();
@@ -60,10 +60,12 @@ public class VentanaMapa extends JFrame implements ActionListener {
 		barraBuscadora = new JTextField("Busca el nombre de la obra");
 		verObrasTotales = new JButton("Ver total de obras");
 		buscarObra = new JButton("Buscar obra");
+		descargarObras = new JButton("Descargar Obras");
 		
-		panelAbajo.setLayout(new GridLayout(1, 2));
+		panelAbajo.setLayout(new GridLayout(1, 3));
 		
 		panelAbajo.add(buscarObra);
+		panelAbajo.add(descargarObras);
 		panelAbajo.add(verObrasTotales);
 		
 		Container cp = getContentPane();
@@ -114,6 +116,15 @@ public class VentanaMapa extends JFrame implements ActionListener {
 				//if(barraBuscadora.getText().equals(Articulo.nombreArticulo)) {
 				//	
 				//}
+			}
+		});
+		
+		descargarObras.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				JOptionPane.showConfirmDialog(null, "Datos serializados correctamente", "Información:", JOptionPane.DEFAULT_OPTION);
 			}
 		});
 		
