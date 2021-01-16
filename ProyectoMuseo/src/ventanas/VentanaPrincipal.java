@@ -49,9 +49,9 @@ public class VentanaPrincipal {
 		panel.setLayout(new GridLayout(1, 0, 0, 0));
 		
 		DefaultListModel listModel = new DefaultListModel();
-		listModel.addElement("Jane Doe");
-		listModel.addElement("John Smith");
-		listModel.addElement("Kathy Green");
+		listModel.addElement("frase");
+		listModel.addElement("frase");
+		listModel.addElement("frase");
 		
 		JList list = new JList(listModel);
 		JScrollPane scrollPane = new JScrollPane(list);

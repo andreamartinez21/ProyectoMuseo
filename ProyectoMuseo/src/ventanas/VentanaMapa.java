@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,10 @@ import clases.Obra;
 
 public class VentanaMapa extends JFrame implements ActionListener {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L; //SERIALIZACIÓN
 	JTextField barraBuscadora;
 	JPanel panelAbajo;
 	JButton verObrasTotales;
@@ -42,6 +47,7 @@ public class VentanaMapa extends JFrame implements ActionListener {
 		
 		BD BDTotal = new BD();
 		listaObras = new ArrayList<Obra>(BDTotal.obras());		// Cargo todos los datos de las obras
+		 
 		
 		for(int i = 0; i < listaObras.size(); i++) {
 			Obra o = listaObras.get(i);
@@ -130,6 +136,8 @@ public class VentanaMapa extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
+
+				guardarObrasCSV(); //aquí llamamos al método guardarObrasCSV
 				JOptionPane.showConfirmDialog(null, "Datos serializados correctamente", "Información:", JOptionPane.DEFAULT_OPTION);
 			}
 		});
@@ -151,6 +159,43 @@ public class VentanaMapa extends JFrame implements ActionListener {
 		setSize(900, 515);
 		setResizable(false);
 		setVisible(true);
+	}
+	
+	//CREAR CSV
+	private void guardarObrasCSV() {
+		FileWriter csvWriter = null;
+		try {
+			csvWriter = new FileWriter("obras.csv");
+			for (Obra obra : listaObras) {
+				String linea = "";
+				
+				// completar la linea correspondiente a la obra actual
+				linea = linea + obra.getIdArticulo() + "#";
+				linea = linea + obra.getNombreArticulo() + "#";
+				linea = linea + obra.getDescripcion() + "#";
+				linea = linea + obra.getZona() + "#";
+				linea = linea + obra.getArtista() + "#";
+				linea = linea + obra.getImagen() + "#";
+				linea = linea + obra.getFecha() + "#";
+				linea = linea + obra.getX() + "#";
+				linea = linea + obra.getY();
+				
+				csvWriter.append(linea + "\n");
+			}
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		if (csvWriter != null) {
+			try {
+				csvWriter.flush();
+				csvWriter.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 	
 	public static void main(String[] args) {
