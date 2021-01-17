@@ -98,7 +98,7 @@ public class BD {
 			log(Level.INFO, "Los usuarios se han añadido correctamente.", null);	
 			
 		} catch (SQLException e) {
-			// TODO: handle exception
+			// TODO: handle exception 
 			e.printStackTrace();
 			
 			//logger
@@ -111,7 +111,7 @@ public class BD {
 	public static boolean existeUsuario(Usuario usuario) {
 		try {
 			ResultSet rs;
-			
+			 
 			//preparamos una sentencia donde la bd selecciona la FILA q tenga AMBOS VALORES q le hemos pasado por parámetro
 			String consulta = "SELECT * FROM usuarios WHERE email=? AND password=?;";
 			
@@ -122,7 +122,6 @@ public class BD {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				if(rs.getString("email").equals(usuario.getEmail()) && rs.getString("password").equals(usuario.getPassword())) {
-
 					JOptionPane.showMessageDialog(null, "¡Ya existe este usuario! ", "Error", JOptionPane.ERROR_MESSAGE);
 					return true;
 				}	
@@ -136,8 +135,7 @@ public class BD {
 			//logger
 			log(Level.SEVERE, "No se ha podido comprobar si existe el usuario.", e);
 			return false; //si no funciona pues devuelve false
-		}
-		
+		}	
 	}
 	
     public static void insertarUsuario(Usuario usuario) {

@@ -1,17 +1,20 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import BD.BD;
-
 import org.junit.jupiter.api.Test;
 
+import BD.BD;
 import clases.Obra;
+import clases.Usuario;
 
 class Tester {
+	
+	BD bd = new BD();
 	
 	@Test
 	public void obras() {

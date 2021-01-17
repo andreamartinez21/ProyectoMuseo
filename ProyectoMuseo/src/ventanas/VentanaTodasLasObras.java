@@ -114,7 +114,6 @@ public class VentanaTodasLasObras extends JFrame{
 		
 		this.setVisible(true);
 		this.setResizable(true);
-//		this.setPreferredSize(new Dimension(900, 600));
 		this.setSize(900, 800);
 	}
 

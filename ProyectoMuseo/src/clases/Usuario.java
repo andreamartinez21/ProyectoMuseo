@@ -13,7 +13,7 @@ public class Usuario implements Serializable {
 		this.password = password;
 	}
 	
-	public Usuario() {
+	public Usuario() { 
 		super();
 		this.email = "";
 		this.password = "";

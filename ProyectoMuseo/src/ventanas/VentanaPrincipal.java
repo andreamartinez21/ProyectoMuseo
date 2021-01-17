@@ -1,9 +1,8 @@
 package ventanas;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -20,8 +19,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
 
 import BD.BD;
 import clases.Obra;
@@ -38,7 +35,7 @@ public class VentanaPrincipal extends JFrame {
 	private List<Obra> listaObras;
 
 	public VentanaPrincipal() {
-		BD bd = new BD();
+		BD bd = new BD(); 
 
 		panel = new JPanel();
 		panel.setLayout(new GridLayout(1, 2));
@@ -136,19 +133,18 @@ public class VentanaPrincipal extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(list);
 		
 		label = new JLabel("<html>Bienvenido al Museo.<br/>Aquí puede visualizar los títulos de las obras que pertenecen al museo:</html>");
-		 
-		//PANEL DERECHA --> Aquí va la imágen
-		panelDcha = new JPanel();
-		
 
+		ImagePanel img = new ImagePanel("images/fondos/prado.jpg");
+		
 		setJMenuBar(menuBar);
-		add(panel);
 
 		panel.add(panelIzqda);
-		panel.add(panelDcha);
+		panel.add(img);
 		
 		panelIzqda.add(label, BorderLayout.NORTH);
 		panelIzqda.add(scrollPane, BorderLayout.CENTER);
+		
+		add(panel);
 		
 		menuBar.add(menuLogin);
 		menuBar.add(menuRegistro);
@@ -156,6 +152,7 @@ public class VentanaPrincipal extends JFrame {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setTitle("Bienvenido");
 		setSize(650, 415);
+		setResizable(false);
 		setVisible(true);
 
 	}

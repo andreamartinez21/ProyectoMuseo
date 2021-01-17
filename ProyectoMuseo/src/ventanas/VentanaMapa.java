@@ -53,7 +53,7 @@ public class VentanaMapa extends JFrame implements ActionListener {
 			Obra o = listaObras.get(i);
 			
 			BotonObra boton = new BotonObra(o);
-			boton.setPreferredSize(TAMANYO_BOTON);
+			boton.setPreferredSize(TAMANYO_BOTON); 
 			boton.setBackground(Color.GREEN);
 			boton.setVisible(false);
 			
