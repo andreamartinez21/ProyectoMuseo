@@ -77,6 +77,12 @@ public class Obra extends Articulo {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
+	@Override
+	public boolean equals(Object objeto) {
+		Obra c = (Obra) objeto;
+		return /*this.zona == c.zona && this.artista == c.artista && this.fecha == c.fecha && this.imagen == c.imagen && this.idArticulo == c.idArticulo && this.nombreArticulo == c.nombreArticulo && this.descripcion == c.descripcion &&*/ this.y == c.y && this.x == c.x;
+	}
 
 	@Override
 	public String toString() {
