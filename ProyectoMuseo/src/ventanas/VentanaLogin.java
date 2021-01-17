@@ -1,17 +1,13 @@
 package ventanas;
 
-
-import javax.swing.JFrame;
 import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.io.IOException;
 
+import javax.swing.*;
+
+import clases.Usuario;
 import BD.BD;
 
 public class VentanaLogin extends JFrame {
@@ -20,68 +16,61 @@ public class VentanaLogin extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	JPanel panel;
+	JLabel labelEmail,labelPassword;
+	JTextField textoEmail,textoPassword;
+	JButton boton;
 	
-	private JTextField textField;
-	private JTextField textField_1; 
-
-
-	/**
-	 * Create the application.
-	 */
-	public VentanaLogin() {
-		initialize(); 
-		setVisible(true);
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		setBounds(100, 100, 236, 368);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(new GridLayout(7, 0, 0, 0));
+	public VentanaLogin(Usuario usuario) {
+		new BD();
 		
-		JLabel lblNewLabel_2 = new JLabel("LOGIN");
-		getContentPane().add(lblNewLabel_2);
+		panel = new JPanel();
+		panel.setLayout(new GridLayout(5,1)); //5 filas 1 columna
 		
-		JLabel lblNewLabel_1 = new JLabel("e-mail:");
-		getContentPane().add(lblNewLabel_1);
+		labelEmail = new JLabel("Introduzca su email para acceder:");
+		textoEmail = new JTextField();
 		
-		textField = new JTextField();
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		labelPassword = new JLabel("Introduzca su contraseña para acceder:");
+		textoPassword = new JTextField();
 		
-		JLabel lblNewLabel = new JLabel("Contrase\u00F1a:");
-		getContentPane().add(lblNewLabel);
-		
-		textField_1 = new JTextField();
-		getContentPane().add(textField_1);
-		textField_1.setColumns(10);
-		
-		JButton btnNewButton_1 = new JButton("Continuar");
-		btnNewButton_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//cada vez que usemos algo de la clase BD TENEMOS QUE PIRMERO PONER BD.GETINSTANE() 
-				//(pq es lo que hace que creemos la base de datos UNA ÚNICA VEZ!!!!!!!!)
-				//base de datos --> llamar 1 vez (instancia) --> metodo de comprobar el login para entrar :D
-				//BD.getInstance().comprobarLogin(textField.getText(), textField_1.getText());
-				
-			}
-		});
-		getContentPane().add(btnNewButton_1);
-		
-		JButton btnNewButton = new JButton("Registrarse");
-		getContentPane().add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
+		boton = new JButton("Aceptar");
+		boton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new VentanaRegistro();
+				if(BD.comprobarLogin(textoEmail.getText(), textoPassword.getText())) {
+					try {
+						new VentanaMapa();
+						new VentanaContador();
+						dispose();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 				
-				dispose();
+				
 			}
 		});
+		
+		
+		this.add(panel);
+		
+		panel.add(labelEmail);
+		panel.add(textoEmail);
+		panel.add(labelPassword);
+		panel.add(textoPassword);
+		panel.add(boton);
+		
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setTitle("Login");
+		pack();
+		setSize(350,400);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		new VentanaLogin(null);
 		
 	}
 
